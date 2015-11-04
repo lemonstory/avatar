@@ -22,11 +22,10 @@ curl_close($ch);
 
 header("content-type: image/jpeg");
 if(strlen($content) < 1000) {
-    if ($size > 0) {
-        $defaultfile = $size . "-" . ($uid%5+1) . ".png";
-    } else {
-        $defaultfile = ($uid%5+1) . ".png";
+    if(!in_array($size ,array(80, 100, 120))) {
+        $size = 120;
     }
+    $defaultfile = $size . "-" . ($uid%5+1) . ".png";
     echo file_get_contents(dirname(__FILE__) . "/static/" . $defaultfile);
 }else{
     echo $content;
